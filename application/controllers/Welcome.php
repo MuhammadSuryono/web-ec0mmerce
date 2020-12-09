@@ -21,7 +21,7 @@ class Welcome extends My_Controller {
 	public function index()
 	{
 		$this->parseData['title_tab'] = 'Home';
-		$this->parseData['content'] = 'content/dashboard/dashboard';
+		$this->parseData['content'] = 'content/checkout/index';
 		$this->load->view('index', $this->parseData);
 	}
 }
