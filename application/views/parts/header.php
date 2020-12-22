@@ -25,17 +25,17 @@
     <div class="row">
         <div class="col-3 col-sm-3">
             <div class="header__logo">
-                <a href="./index.html"><img src="https://i.ibb.co/StQNVqS/photo-2020-12-08-21-09-21-removebg-preview.png" alt=""></a>
+                <a href="<?=base_url()?>"><img src="https://i.ibb.co/StQNVqS/photo-2020-12-08-21-09-21-removebg-preview.png" alt=""></a>
             </div>
         </div>
         <div class="col-9 col-sm-9">
             <div class="header__cart">
                 <ul>
                     <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                    <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                    <li><a href="<?=base_url('checkout/iadadka879asdu89asdi')?>"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
                 </ul>
                 <div class="header__top__right__auth">
-                    <a href="#"><i class="fa fa-user"></i> Login</a>
+                    <a href="#"><i class="fa fa-user"></i> <?=base_url()?></a>
                 </div>
             </div>
         </div>

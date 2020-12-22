@@ -20,8 +20,11 @@ class Welcome extends My_Controller {
 	 */
 	public function index()
 	{
+	    $data = $this->request_API_GET([], $this->BaseUrl('development').'category', []);
+
 		$this->parseData['title_tab'] = 'Home';
-		$this->parseData['content'] = 'content/checkout/index';
+		$this->parseData['content'] = 'content/dashboard/dashboard';
+		$this->parseData['category'] = $data->data;
 		$this->load->view('index', $this->parseData);
 	}
 }
