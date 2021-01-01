@@ -21,10 +21,12 @@ class Welcome extends My_Controller {
 	public function index()
 	{
 	    $data = $this->request_API_GET([], $this->BaseUrl('development').'category', []);
-
+        $product = $this->request_API_GET([], $this->BaseUrl('development').'product', []);
 		$this->parseData['title_tab'] = 'Home';
 		$this->parseData['content'] = 'content/dashboard/dashboard';
 		$this->parseData['category'] = $data->data;
+		$this->parseData['products'] = $product->data;
+		$this->parseData['isLogin'] = $this->session->userdata('isLogin');
 		$this->load->view('index', $this->parseData);
 	}
 }

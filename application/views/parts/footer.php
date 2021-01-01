@@ -16,7 +16,9 @@
             </div>
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="footer__widget">
-                    <h6>Metode Payment</h6>
+                    <p><h6>Metode Payment</h6>
+                    <div class="footer__copyright__payment" style="float: left"><img src="/assets/img/payment-item.png" alt=""></div></p>
+                    <h6><br>Delivery service</h6>
                     <div class="footer__copyright__payment" style="float: left"><img src="/assets/img/payment-item.png" alt=""></div>
                 </div>
             </div>

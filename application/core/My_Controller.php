@@ -119,7 +119,7 @@ class My_Controller extends CI_Controller
     {
         switch ($environment) {
             case "development":
-                return "http://192.168.1.246:7000/api/v1/";
+                return "http://192.168.100.19:7001/api/v1/";
                 break;
             default:
                 return "";

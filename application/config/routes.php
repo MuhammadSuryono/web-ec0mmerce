@@ -57,4 +57,3 @@ $route['product/(:any)/(:any)'] = 'product/productById/$2';
 $route['checkout/(:any)'] = 'checkout/checkoutProduct/$1';
 $route['cart'] = 'cart/cartByUser';
 $route['category/(:any)'] = 'category/categoryById';
-$route['login'] = 'product/ProductNew';
