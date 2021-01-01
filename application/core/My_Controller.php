@@ -20,16 +20,18 @@ class My_Controller extends CI_Controller
         'app_name' => 'Web Penjualan'
     ];
 
-    function encryptIt( $q ) {
+    function encryptIt($q)
+    {
         $cryptKey  = 'qJB0rGtIn5UB1xG03efyCp';
-        $qEncoded      = base64_encode( mcrypt_encrypt( MCRYPT_RIJNDAEL_256, md5( $cryptKey ), $q, MCRYPT_MODE_CBC, md5( md5( $cryptKey ) ) ) );
-        return( $qEncoded );
+        $qEncoded      = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($cryptKey), $q, MCRYPT_MODE_CBC, md5(md5($cryptKey))));
+        return ($qEncoded);
     }
 
-    function decryptIt( $q ) {
+    function decryptIt($q)
+    {
         $cryptKey  = 'qJB0rGtIn5UB1xG03efyCp';
-        $qDecoded      = rtrim( mcrypt_decrypt( MCRYPT_RIJNDAEL_256, md5( $cryptKey ), base64_decode( $q ), MCRYPT_MODE_CBC, md5( md5( $cryptKey ) ) ), "\0");
-        return( $qDecoded );
+        $qDecoded      = rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5($cryptKey), base64_decode($q), MCRYPT_MODE_CBC, md5(md5($cryptKey))), "\0");
+        return ($qDecoded);
     }
 
     /***
@@ -38,13 +40,14 @@ class My_Controller extends CI_Controller
      * @param array $header
      * @return mixed
      */
-    public function request_API_POST($body = [], $url, $header = []) {
+    public function request_API_POST($body = [], $url, $header = [])
+    {
         $headr = [
             'Content-Type: application/json',
             'Accept: application/json'
         ];
 
-        if(!empty($header)) $headr = array_merge($headr, $header);
+        if (!empty($header)) $headr = array_merge($headr, $header);
 
         $crl = curl_init();
 
@@ -77,13 +80,14 @@ class My_Controller extends CI_Controller
      * @param array $header
      * @return mixed
      */
-    public function request_API_GET($body = [], $url, $header = []) {
+    public function request_API_GET($body = [], $url, $header = [])
+    {
         $headr = [
             'Content-Type: application/json',
             'Accept: application/json'
         ];
 
-        if(!empty($header)) $headr = array_merge($headr, $header);
+        if (!empty($header)) $headr = array_merge($headr, $header);
 
         $crl = curl_init();
 
@@ -119,7 +123,7 @@ class My_Controller extends CI_Controller
     {
         switch ($environment) {
             case "development":
-                return "http://192.168.100.19:7001/api/v1/";
+                return "http://localhost:7001/api/v1/";
                 break;
             default:
                 return "";

@@ -75,17 +75,17 @@
 
                         <div class="checkout__input">
                             <p>Town/City<span>*</span></p>
-                            <select class="form-control" required>
-                                <?php foreach ($city->rajaongkir->results as $kota)
-                                {
-                                    echo '<option value="'.$kota->city_id.'">'.$kota->city_name.'</option>';
+                            <select class="form-control" id="select-city" required>
+                                <option></option>
+                                <?php foreach ($city->rajaongkir->results as $kota) {
+                                    echo '<option value="' . $kota->city_id . '">' . $kota->city_name . '</option>';
                                 }
                                 ?>
                             </select>
                         </div>
 
                         <div class="checkout__input">
-<!--                            <p style="margin-left: -50px">Address<span>*</span></p>-->
+                            <!--                            <p style="margin-left: -50px">Address<span>*</span></p>-->
                             <input type="text" placeholder="Street Address" class="checkout__input__add" required>
                             <input type="text" placeholder="Apartment, suite, unite ect (optinal)">
                         </div>
@@ -105,8 +105,7 @@
                         </div>
                         <div class="checkout__input">
                             <p>Order notes</p>
-                            <input type="text"
-                                   placeholder="Notes about your order, e.g. special notes for delivery.">
+                            <input type="text" placeholder="Notes about your order, e.g. special notes for delivery.">
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
@@ -122,6 +121,11 @@
                             <div class="checkout__order__total">Total <span>$750.99</span></div>
                             <label class="font-weight-bold">Delivery Service</label>
                             <div class="checkout__input__checkbox">
+                                <select class="form-control w-100" id="select-courier" disabled required>
+                                    <option></option>
+                                </select>
+                            </div>
+                            <!-- <div class="checkout__input__checkbox">
                                 <label for="acc-or">
                                     JNE
                                     <input type="checkbox" id="acc-or" value="jne">
@@ -141,7 +145,7 @@
                                     <input type="checkbox" id="acc-or3" value="pos">
                                     <span class="checkmark"></span>
                                 </label>
-                            </div>
+                            </div> -->
                             <button type="submit" class="site-btn">CHECKOUT</button>
                         </div>
                     </div>
