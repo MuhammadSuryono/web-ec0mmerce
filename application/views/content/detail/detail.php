@@ -8,17 +8,12 @@
                         <span>All Categories</span>
                     </div>
                     <ul>
-                        <li><a href="#">Fresh Meat</a></li>
-                        <li><a href="#">Vegetables</a></li>
-                        <li><a href="#">Fruit & Nut Gifts</a></li>
-                        <li><a href="#">Fresh Berries</a></li>
-                        <li><a href="#">Ocean Foods</a></li>
-                        <li><a href="#">Butter & Eggs</a></li>
-                        <li><a href="#">Fastfood</a></li>
-                        <li><a href="#">Fresh Onion</a></li>
-                        <li><a href="#">Papayaya & Crisps</a></li>
-                        <li><a href="#">Oatmeal</a></li>
-                        <li><a href="#">Fresh Bananas</a></li>
+                        <?php
+                        foreach ($category as $categor)
+                        { ?>
+                            <li><a href="<?=base_url('category/'.$categor->id)?>"><?=$categor->category_name?></a></li>
+                        <?php }
+                        ?>
                     </ul>
                 </div>
             </div>
@@ -52,23 +47,13 @@
                 <div class="product__details__pic">
                     <div class="product__details__pic__item">
                         <img class="product__details__pic__item--large"
-                             src="https://assets1.progressivegrocer.com/files/styles/content_sm/s3/2019-07/bagel%20sandwich.jpg?itok=G1XOS0-i" alt="">
-                    </div>
-                    <div class="product__details__pic__slider owl-carousel">
-                        <img data-imgbigurl="img/product/details/product-details-2.jpg"
-                             src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/RedDot_Burger.jpg/1200px-RedDot_Burger.jpg" alt="">
-                        <img data-imgbigurl="img/product/details/product-details-3.jpg"
-                             src="https://img.jakpost.net/c/2019/11/12/2019_11_12_82229_1573532922._large.jpg" alt="">
-                        <img data-imgbigurl="img/product/details/product-details-5.jpg"
-                             src="https://i2.wp.com/www.foodrepublic.com/wp-content/uploads/2012/03/033_FR11785.jpg?fit=978%2C650&ssl=1" alt="">
-                        <img data-imgbigurl="img/product/details/product-details-4.jpg"
-                             src="https://twisper.com/wp-content/uploads/2020/03/close-up-photo-of-burger-3915906-scaled.jpg" alt="">
+                             src="<?=$url_image.$product->image?>" alt="">
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="product__details__text">
-                    <h3>Vetgetable’s Package</h3>
+                    <h3><?=$product->item_name?></h3>
                     <div class="product__details__rating">
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
@@ -77,10 +62,8 @@
                         <i class="fa fa-star-half-o"></i>
                         <span>(18 reviews)</span>
                     </div>
-                    <div class="product__details__price">$50.00</div>
-                    <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam
-                        vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet
-                        quam vehicula elementum sed sit amet dui. Proin eget tortor risus.</p>
+                    <div class="product__details__price">Rp. <?=number_format($product->price)?></div>
+                    <p><?=$product->description?></p>
                     <div class="product__details__quantity">
                         <div class="quantity">
                             <div class="pro-qty">
@@ -88,20 +71,20 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#" class="primary-btn">ADD TO CARD</a>
-                    <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                    <a href="#" id="add-to-cart" class="primary-btn-add-card"><i class="fa fa-shopping-cart"></i> ADD TO CARD</a>
+                    <a href="#" id="buy-now" class="primary-btn"><i class="fa fa-money"></i> BUY NOW</a>
                     <ul>
-                        <li><b>Availability</b> <span>In Stock</span></li>
-                        <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
-                        <li><b>Weight</b> <span>0.5 kg</span></li>
-                        <li><b>Share on</b>
-                            <div class="share">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
-                            </div>
+                        <li><b>Availability</b>
+                            <?php
+                                $stock = 'Not available';
+                                if ($product->stock > 1) $stock = $product->stock." ".$product->unit;
+
+                                echo $isLogin ? '<span>'.$stock.'</span>':'<span>You are not logged in</span>';
+                            ?>
+
                         </li>
+                        <li><b>Weight</b> <span><?=$product->weight/1000?> Kg</span></li>
+                        <li><b>Category</b> <span><?=$product->category_name?></span></li>
                     </ul>
                 </div>
             </div>
@@ -199,66 +182,27 @@
             </div>
         </div>
         <div class="row">
+            <?php
+            foreach ($relatedProduct->product as $item) {
+            ?>
             <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
+                    <div class="product__item__pic set-bg" data-setbg="<?=$url_image.$item->image?>">
                         <ul class="product__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                            <?php
+                                if ($isLogin) {
+                            ?>
                             <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            <?php } ?>
                         </ul>
                     </div>
                     <div class="product__item__text">
-                        <h6><a href="#">Crab Pool Security</a></h6>
-                        <h5>$30.00</h5>
+                        <h6><a href="<?=base_url('product/'.$item->item_name.'/'.$item->id)?>"><?=$item->item_name?></a></h6>
+                        <h5>Rp. <?=number_format($item->price)?></h5>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="img/product/product-2.jpg">
-                        <ul class="product__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="#">Crab Pool Security</a></h6>
-                        <h5>$30.00</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="img/product/product-3.jpg">
-                        <ul class="product__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="#">Crab Pool Security</a></h6>
-                        <h5>$30.00</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="img/product/product-7.jpg">
-                        <ul class="product__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="#">Crab Pool Security</a></h6>
-                        <h5>$30.00</h5>
-                    </div>
-                </div>
-            </div>
+            <?php } ?>
         </div>
     </div>
 </section>

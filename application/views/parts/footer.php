@@ -17,9 +17,13 @@
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="footer__widget">
                     <p><h6>Metode Payment</h6>
-                    <div class="footer__copyright__payment" style="float: left"><img src="/assets/img/payment-item.png" alt=""></div></p>
-                    <h6><br>Delivery service</h6>
-                    <div class="footer__copyright__payment" style="float: left"><img src="/assets/img/payment-item.png" alt=""></div>
+                    <div class="footer__copyright__payment" style="float: left; width: 30%">
+                        <img src="https://cdn1293.templcdn.com/wp-content/uploads/2020/08/bank-transfer-logo.png" alt="">
+<!--                        <img src="https://img2.pngio.com/bank-negara-indonesia-logo-bank-bni-transparan-clipart-full-bank-negara-indonesia-png-3126_906.png" alt="">-->
+                    </div>
+                    </p>
+                    <h6><br><br>Delivery service</h6>
+                    <div class="footer__copyright__payment" style="float: left; width: 30%"><img src="https://upload.wikimedia.org/wikipedia/commons/9/92/New_Logo_JNE.png" alt=""></div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-12">

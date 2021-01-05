@@ -56,4 +56,12 @@ $route['translate_uri_dashes'] = FALSE;
 $route['product/(:any)/(:any)'] = 'product/productById/$2';
 $route['checkout/(:any)'] = 'checkout/checkoutProduct/$1';
 $route['cart'] = 'cart/cartByUser';
-$route['category/(:any)'] = 'category/categoryById';
+$route['category/(:any)'] = 'category/categoryById/$1';
+
+$route['auth/login'] = 'login';
+$route['auth/login/check'] = 'login/authLogin';
+
+$route['auth/register'] = 'register';
+$route['auth/register/create'] = 'register/authRegister';
+$route['auth/logout'] = 'logout/authLogout';
+

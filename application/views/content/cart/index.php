@@ -8,17 +8,12 @@
                         <span>All Categories</span>
                     </div>
                     <ul>
-                        <li><a href="#">Fresh Meat</a></li>
-                        <li><a href="#">Vegetables</a></li>
-                        <li><a href="#">Fruit & Nut Gifts</a></li>
-                        <li><a href="#">Fresh Berries</a></li>
-                        <li><a href="#">Ocean Foods</a></li>
-                        <li><a href="#">Butter & Eggs</a></li>
-                        <li><a href="#">Fastfood</a></li>
-                        <li><a href="#">Fresh Onion</a></li>
-                        <li><a href="#">Papayaya & Crisps</a></li>
-                        <li><a href="#">Oatmeal</a></li>
-                        <li><a href="#">Fresh Bananas</a></li>
+                        <?php
+                        foreach ($category as $categor)
+                        { ?>
+                            <li><a href="<?=base_url('category/'.$categor->id)?>"><?=$categor->category_name?></a></li>
+                        <?php }
+                        ?>
                     </ul>
                 </div>
             </div>
@@ -61,28 +56,34 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <?php
+                        $total = 0;
+                        foreach ($carts as $cart) {
+                            $total = $total + ($cart->quantity*$cart->price);
+                        ?>
                         <tr>
                             <td class="shoping__cart__item">
-                                <img src="https://www.rukita.co/stories/wp-content/uploads/2020/02/byurger.jpg" alt="">
-                                <h5>Vegetable’s Package</h5>
+                                <img src="<?=$url_image.$cart->image?>" alt="">
+                                <h5><?=$cart->item_name?></h5>
                             </td>
                             <td class="shoping__cart__price">
-                                $55.00
+                                Rp. <?=number_format($cart->price)?>
                             </td>
                             <td class="shoping__cart__quantity">
                                 <div class="quantity">
                                     <div class="pro-qty">
-                                        <input type="text" value="1">
+                                        <input type="text" value="<?=$cart->quantity?>" id="qty-cart" data-id="<?=$cart->id?>">
                                     </div>
                                 </div>
                             </td>
                             <td class="shoping__cart__total">
-                                $110.00
+                                Rp. <?=number_format($cart->quantity*$cart->price)?>
                             </td>
                             <td class="shoping__cart__item__close">
                                 <span class="icon_close"></span>
                             </td>
                         </tr>
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>
@@ -91,28 +92,23 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="shoping__cart__btns">
-                    <a href="#" class="primary-btn"><i class="fa fa-shopping-cart"></i> CONTINUE SHOPPING</a>
+                    <a href="<?=base_url()?>" class="primary-btn"><i class="fa fa-shopping-cart"></i> CONTINUE SHOPPING</a>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="shoping__continue">
                     <div class="shoping__discount">
-                        <h5>Discount Codes</h5>
-                        <form action="#">
-                            <input type="text" placeholder="Enter your coupon code">
-                            <button type="submit" class="site-btn"><i class="fa fa-ticket"></i> APPLY COUPON</button>
-                        </form>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="shoping__checkout">
                     <h5>Cart Total</h5>
-                    <ul>
-                        <li>Subtotal <span>$454.98</span></li>
-                        <li>Total <span>$454.98</span></li>
+                    <ul class="grand_total">
+                        <li class=".subtotal">Subtotal <span>Rp. <?=number_format($total)?></span></li>
+                        <li>Total <span class=".total">Rp. <?=number_format($total)?></span></li>
                     </ul>
-                    <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
+                    <a href="<?=base_url('checkout/'.md5($this->session->userdata('user_id')))?>" class="primary-btn">PROCEED TO CHECKOUT</a>
                 </div>
             </div>
         </div>

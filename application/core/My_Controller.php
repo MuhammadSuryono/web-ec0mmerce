@@ -2,9 +2,11 @@
 
 class My_Controller extends CI_Controller
 {
+    public $js = array();
     function __construct()
     {
         parent::__construct();
+        array_push($this->js, base_url() . 'assets/js/custom/cart.js');
     }
 
     public $parseData = [
@@ -13,7 +15,9 @@ class My_Controller extends CI_Controller
         'modal' => 'parts/modal',
         'content' => 'errors/error',
         'footer' => 'parts/footer',
+        'javascript' => array(),
         'menu_wrapper' => 'parts/menu_wrapper',
+        'url_image' => 'http://localhost:7001/assets/images_product/',
 
         'title_budge' => 'Not Found!',
         'title_tab' => 'Not Found!',
@@ -123,10 +127,21 @@ class My_Controller extends CI_Controller
     {
         switch ($environment) {
             case "development":
-                return "http://localhost:7001/api/v1/";
+                return "http://localhost:7000/api/v1/";
                 break;
             default:
                 return "";
         }
+    }
+
+    /***
+     * @return bool
+     */
+    public function isLogin()
+    {
+        $isLogin = false;
+        if ($this->session->userdata('userIsLogin')) $isLogin = true;
+
+        return $isLogin;
     }
 }

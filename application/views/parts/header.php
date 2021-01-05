@@ -30,12 +30,18 @@
         </div>
         <div class="col-9 col-sm-9">
             <div class="header__cart">
+                <?php if ($isLogin) { ?>
                 <ul>
-                    <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                    <li><a href="<?=base_url('checkout/iadadka879asdu89asdi')?>"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                    <li><a href="<?=base_url('cart')?>" id="count-cart"></li>
                 </ul>
+                <?php } ?>
                 <div class="header__top__right__auth">
-                    <a href="#"><i class="fa fa-user"></i> <?=base_url()?></a>
+                    <?php
+                    $url = base_url().'auth/login';
+                    if ($isLogin) $url = base_url().'auth/logout';
+                    ?>
+
+                    <a href="<?=$url?>"><i class="fa fa-user"></i> <?= $isLogin ? $this->session->userdata('name').' | Logout':'Login'?></a>
                 </div>
             </div>
         </div>

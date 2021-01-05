@@ -18,7 +18,13 @@ class Welcome extends My_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
+	function __construct()
+    {
+        parent::__construct();
+        $this->parseData['isLogin'] = $this->isLogin();
+    }
+
+    public function index()
 	{
 	    $data = $this->request_API_GET([], $this->BaseUrl('development').'category', []);
         $product = $this->request_API_GET([], $this->BaseUrl('development').'product', []);
@@ -26,7 +32,9 @@ class Welcome extends My_Controller {
 		$this->parseData['content'] = 'content/dashboard/dashboard';
 		$this->parseData['category'] = $data->data;
 		$this->parseData['products'] = $product->data;
-		$this->parseData['isLogin'] = $this->session->userdata('isLogin');
+        $this->parseData['javascript'] = $this->js;
+
+//		print_r($this->parseData);
 		$this->load->view('index', $this->parseData);
 	}
 }

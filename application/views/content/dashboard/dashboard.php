@@ -82,7 +82,6 @@
                 <div class="section-title">
                     <h2>Featured Product</h2>
                 </div>
-                </div>
             </div>
         </div>
         <div class="row featured__filter">
@@ -91,8 +90,9 @@
             ?>
             <div class="col-lg-3 col-md-4 col-sm-6 mix <?=$product->category_id?>">
                 <div class="featured__item">
-                    <div class="featured__item__pic set-bg" data-setbg="/assets/img/featured/feature-1.jpg">
-                        <?php if ($isLogin) {?>
+                    <div class="featured__item__pic set-bg" data-setbg="<?=$url_image.$product->image?>">
+                        <?php
+                        if ($isLogin) {?>
                         <ul class="featured__item__pic__hover">
                             <li><a href="#"><i class="fa fa-heart"></i></a></li>
                             <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -102,7 +102,7 @@
                     </div>
                     <div class="featured__item__text">
                         <h6><a href="<?=base_url('product/'.$product->item_name.'/'.$product->id)?>"><?=$product->item_name?></a></h6>
-                        <h5><?=$product->price?></h5>
+                        <h5>Rp. <?=number_format($product->price)?></h5>
                     </div>
                 </div>
             </div>
@@ -113,22 +113,22 @@
 <!-- Featured Section End -->
 
 <!-- Banner Begin -->
-<div class="banner">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6">
-                <div class="banner__pic">
-                    <img src="/assets/img/banner/banner-1.jpg" alt="">
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6">
-                <div class="banner__pic">
-                    <img src="/assets/img/banner/banner-2.jpg" alt="">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<!--<div class="banner">-->
+<!--    <div class="container">-->
+<!--        <div class="row">-->
+<!--            <div class="col-lg-6 col-md-6 col-sm-6">-->
+<!--                <div class="banner__pic">-->
+<!--                    <img src="/assets/img/banner/banner-1.jpg" alt="">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-lg-6 col-md-6 col-sm-6">-->
+<!--                <div class="banner__pic">-->
+<!--                    <img src="/assets/img/banner/banner-2.jpg" alt="">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 <!-- Banner End -->
 
 <!-- Latest Product Section Begin -->

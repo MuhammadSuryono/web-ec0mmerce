@@ -21,6 +21,8 @@
     <link rel="stylesheet" href=<?= base_url("/assets/css/slicknav.min.css") ?> type="text/css">
     <link rel="stylesheet" href=<?= base_url("/assets/css/style.css") ?> type="text/css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="<?=base_url().'assets/toastr/toastr.min.css'?>">
+
 </head>
 
 <body>
@@ -58,8 +60,11 @@
     <script src=<?= base_url("assets/js/mixitup.min.js") ?>></script>
     <script src=<?= base_url("assets/js/owl.carousel.min.js") ?>></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script src="<?=base_url().'assets/toastr/toastr.min.js'?>"></script>
+
     <script>
         $(document).ready(function() {
+            <?php if (!$isLogin) {?> localStorage.clear(); <?php } ?>
             $("select").select2({
                 tags: "true",
                 placeholder: "Select City"
@@ -69,7 +74,7 @@
     <script src=<?= base_url("assets/js/main.js") ?>></script>
     <?php
     for ($i = 0; $i < count($javascript); $i++) {
-        echo '<script src="' . $javascript[$i] . '"></script>';
+        echo '<script type="module" src="' . $javascript[$i] . '"></script>';
     }
     ?>
 </body>
