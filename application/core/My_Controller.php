@@ -17,7 +17,7 @@ class My_Controller extends CI_Controller
         'footer' => 'parts/footer',
         'javascript' => array(),
         'menu_wrapper' => 'parts/menu_wrapper',
-        'url_image' => 'http://localhost:7001/assets/images_product/',
+        'url_image' => 'http://localhost:9000/assets/images_product/',
 
         'title_budge' => 'Not Found!',
         'title_tab' => 'Not Found!',

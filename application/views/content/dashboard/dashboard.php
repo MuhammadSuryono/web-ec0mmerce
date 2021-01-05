@@ -94,9 +94,7 @@
                         <?php
                         if ($isLogin) {?>
                         <ul class="featured__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                            <li><a href="<?=base_url('cart')?>"><i class="fa fa-shopping-cart"></i></a></li>
+                            <li><a href="javascript:void(0)" class="add-cart-bullet"><i class="fa fa-shopping-cart"></i></a></li>
                         </ul>
                         <?php } ?>
                     </div>
