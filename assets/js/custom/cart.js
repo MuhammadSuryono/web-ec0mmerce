@@ -16,6 +16,7 @@ $(() => {
             cache:false,
             async:false,
             success: function (result) {
+                console.log("result ", result);
                 count = result.data.length;
             },
             error: function (xhr) {
@@ -109,5 +110,12 @@ $(() => {
                 }
             })
         }
+    })
+
+    $('#btn-checkout').on('click', function name(params) {
+        let isLogin = statusLogin()
+
+        if (isLogin) redirectLogin();
+        let userId = localStorage.getItem("user_id");
     })
 })

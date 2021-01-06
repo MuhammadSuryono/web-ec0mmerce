@@ -109,7 +109,7 @@
                         <li>Total <span class=".total">Rp. <?=number_format($total)?></span></li>
                     </ul>
                     <?php if (count($carts) > 0) {?>
-                    <a href="<?=base_url('checkout/'.md5($this->session->userdata('user_id')))?>" class="primary-btn">PROCEED TO CHECKOUT</a>
+                    <a href="javascript:void(0)" id="btn-checkout" class="primary-btn">PROCEED TO CHECKOUT</a>
                     <?php } ?>
                 </div>
             </div>

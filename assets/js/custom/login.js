@@ -23,9 +23,8 @@ $(document).ready(function () {
                     localStorage.setItem("fullname", obj.response.data.fullname);
                     localStorage.setItem("email", obj.response.data.email);
 
-
                     document.getElementById("form-login").reset();
-                    setInterval(function(){ window.location.href = URL_APP(); }, 1000);
+                    setInterval(function(){ window.location.reload(); }, 1000);
                 }else{
                     toastr.error(obj.message)
                 }
