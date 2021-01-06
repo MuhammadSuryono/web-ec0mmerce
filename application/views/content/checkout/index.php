@@ -153,3 +153,42 @@
         </div>
     </div>
 </section>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Payment Information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Transaction ID : 09090809809</p>
+                <p>
+                    <div class="row">
+                        <div class="col-md-1">
+                            <img src="https://3.bp.blogspot.com/-VT93OEYIVZs/VxxCkCID0YI/AAAAAAAAXDA/LUiQcU3DRYEoA7BGV1Qaf9vm1MBUf4kBgCLcB/s1600/Logo%2BBank%2BBNI.png" width="100%">
+                        </div>
+                        <div class="col-md-6">
+                            Bank BNI (Automatic check)
+                        </div>
+                    </div>
+                </p>
+                <p style="padding: 30px;" class="text-center">
+                    Virtual Account Number :<br>
+                    <span class="font-weight-bold text-danger" style="font-size: 16pt">78878-222-278328</span>
+                </p>
+                <p>
+                    <span class="text-info">Checked within 10 minutes after payment</span><br>
+                    Pay the order to the virtual account number above before re-ordering
+                </p>
+                <p>
+                    <button class="site-btn">I have already paid</button>
+                    <a href="javascript:void(0)" class="primary-btn-continue">Continue Shopping</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

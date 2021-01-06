@@ -94,7 +94,7 @@
                         <?php
                         if ($isLogin) {?>
                         <ul class="featured__item__pic__hover">
-                            <li><a href="javascript:void(0)" class="add-cart-bullet"><i class="fa fa-shopping-cart"></i></a></li>
+                            <li><a href="javascript:void(0)" class="add-cart-bullet" product-id="<?=$product->id?>" product-price="<?=$product->price?>" id="add-cart-bullet"><i class="fa fa-shopping-cart"></i></a></li>
                         </ul>
                         <?php } ?>
                     </div>

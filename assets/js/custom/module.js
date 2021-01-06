@@ -1,4 +1,4 @@
-const BASE_URL_API = "http://localhost:7000/api/v1/";
+const BASE_URL_API = "http://192.168.100.5:7000/api/v1/";
 
 /***
  *
@@ -21,6 +21,7 @@ function statusLogin() {
     let status = false;
 
     if (isLogin == true) status = true;
+    if (typeof isLogin == "undefined") status = false;
 
     return status;
 }

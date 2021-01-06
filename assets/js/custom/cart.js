@@ -1,8 +1,9 @@
-import {BASE_URL_API, convertRupiah} from "./module.js";
+import {BASE_URL_API, convertRupiah, statusLogin, redirectLogin} from "./module.js";
+import {httpRequest} from "./api.js";
 
 $(() => {
     let user_id = localStorage.getItem('user_id');
-    $('#count-cart').html(dataCart());
+    if (typeof user_id != "undefined" && user_id != "") $('#count-cart').html(dataCart());
 
     function dataCart() {
         let count = 0;
@@ -80,6 +81,33 @@ $(() => {
 
 
     $('.add-cart-bullet').on('click', function() {
-        
+        let isLogin = statusLogin()
+
+        if (isLogin) redirectLogin();
+        else {
+            let userId = localStorage.getItem("user_id");
+            let idProduct = $(this).attr("product-id");
+            let pricceProduct = $(this).attr("product-price");
+
+            let body = {id_user: userId, id_product: idProduct, item_price: pricceProduct, quantity: 1}
+            httpRequest("cart", "post", body, function (outpout) {
+                if (outpout.status && typeof outpout.status != "undefined") toastr.success(outpout.message); $('#count-cart').html(dataCart());
+            })
+        }
+    })
+
+    $('#remove-cart').on('click', function () {
+        let isLogin = statusLogin()
+
+        if (isLogin) redirectLogin();
+        else {
+            let cartId = $(this).attr("cart-id");
+            httpRequest("cart/" + cartId, "delete", {}, function (outpout) {
+                if (outpout.status && typeof outpout.status != "undefined") {
+                    toastr.success(outpout.message);
+                    setInterval(window.location.reload(), 1500)
+                }
+            })
+        }
     })
 })

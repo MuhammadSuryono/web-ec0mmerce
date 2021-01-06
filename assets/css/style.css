@@ -182,6 +182,17 @@ ol {
 	letter-spacing: 2px;
 }
 
+.primary-btn-continue {
+	display: inline-block;
+	font-size: 14px;
+	padding: 13px 28px 13px;
+	color: #ffffff;
+	text-transform: uppercase;
+	font-weight: 700;
+	background: #6f6f6f;
+	letter-spacing: 2px;
+}
+
 .site-btn {
 	font-size: 14px;
 	color: #ffffff;

@@ -80,7 +80,7 @@
                                 Rp. <?=number_format($cart->quantity*$cart->price)?>
                             </td>
                             <td class="shoping__cart__item__close">
-                                <span class="icon_close"></span>
+                                <span class="icon_close" id="remove-cart" cart-id="<?=$cart->id?>"></span>
                             </td>
                         </tr>
                         <?php } ?>
@@ -108,7 +108,9 @@
                         <li class=".subtotal">Subtotal <span>Rp. <?=number_format($total)?></span></li>
                         <li>Total <span class=".total">Rp. <?=number_format($total)?></span></li>
                     </ul>
+                    <?php if (count($carts) > 0) {?>
                     <a href="<?=base_url('checkout/'.md5($this->session->userdata('user_id')))?>" class="primary-btn">PROCEED TO CHECKOUT</a>
+                    <?php } ?>
                 </div>
             </div>
         </div>
