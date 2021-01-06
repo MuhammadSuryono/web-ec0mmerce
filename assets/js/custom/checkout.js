@@ -1,10 +1,12 @@
 import {BASE_URL_API, convertRupiah} from "./module.js";
+import {httpRequest} from "./api.js";
 
 $(() => {
     let user_id = localStorage.getItem('user_id');
     let subTotal = 0;
     let textCourier = '';
     let costShip = 0;
+    let destination_id = 0;
     $('.cost-deliver').html('<li> Delivery service <span>+Rp. '+ costShip +'</span></li>');
 
     dataCart();
@@ -26,6 +28,7 @@ $(() => {
     $('#select-city').on('change', function() {
         console.log($(this).val());
         let destination = $(this).val();
+        destination_id = destination
 
         let response = getDataCourier(destination);
         response.then(res => {
@@ -61,38 +64,61 @@ $(() => {
         let cost = $(e.currentTarget).val();
         let text = $("#select-courier option:selected").text();
         costShip = cost
-        $('.cost-deliver').html('<li> Delivery service <span>+Rp. '+ cost +'</span><br>'+ text +'</li>');
+        textCourier = text
 
+        $('.cost-deliver').html('<li> Delivery service <span>+Rp. '+ cost +'</span><br>'+ text +'</li>');
         $('.checkout__order__total').html('Total <span>Rp. '+ convertRupiah(subTotal + parseInt(cost)) +'</span>')
 
     })
 
     function dataCart() {
+        httpRequest("cart/checkout/" + user_id, "get", "", function (result) {
+            console.log(result)
+            let dataCart = result.data
+            let listProduct = '';
 
-        $.ajax({
-            url: BASE_URL_API + "cart/" + user_id,
-            type:"get",
-            data: "",
-            processData:false,
-            contentType:false,
-            cache:false,
-            async:false,
-            success: function (result) {
-                let dataCart = result.data
-                let listProduct = '';
+            dataCart.forEach(product => {
+                subTotal = subTotal + (product.quantity * product.item_price);
+                listProduct += '<li>'+ product.item_name +' (x'+ product.quantity +') <span>Rp. '+ convertRupiah(product.quantity * product.item_price) +'</span></li>';
+            })
 
-                dataCart.forEach(product => {
-                    subTotal = subTotal + (product.quantity * product.item_price);
-                    listProduct += '<li>'+ product.item_name +' (x'+ product.quantity +') <span>Rp. '+ convertRupiah(product.quantity * product.item_price) +'</span></li>';
-                })
-
-                $('.checkout__order__subtotal').html('Subtotal <span>Rp. '+ convertRupiah(subTotal) +'</span>');
-                $('.checkout__order__total').html('Total <span>Rp. '+ convertRupiah(subTotal + costShip) +'</span>')
-                $('.list-orders').html(listProduct);
-            },
-            error: function (xhr) {
-                toastr.error("Can't load data cart, Please try again later!")
-            }
-        });
+            $('.checkout__order__subtotal').html('Subtotal <span>Rp. '+ convertRupiah(subTotal) +'</span>');
+            $('.checkout__order__total').html('Total <span>Rp. '+ convertRupiah(subTotal + costShip) +'</span>')
+            $('.list-orders').html(listProduct);
+        })
     }
+
+
+    $('#form-penerima').submit(function (e) {
+        e.preventDefault()
+        let data = new FormData(this);
+        let url = window.location.href
+        let order_id = url.substring(url.lastIndexOf('/')+1)
+
+
+        let body = {
+            order_id: order_id,
+            payment_metode: "bank_transfer",
+            receipt_man: {
+                order_id: order_id,
+                penerima: data.get("firstName")+" "+data.get("lastName"),
+                address: data.get("address") + " " + data.get("addressOptional"),
+                contact: data.get("contact"),
+                notes: data.get("orderNotes"),
+                destination: textCourier,
+                destination_id: destination_id,
+                cost: costShip,
+            }
+        }
+
+        httpRequest("transactions/push", "post", body, function (output) {
+            if (output.status && typeof output.status != "undefined")
+            {
+                console.log(output)
+                $("#exampleModal").modal('show');
+            }else{
+                toastr.error("Cannot create transaction, Please try again later!");
+            }
+        })
+    })
 })

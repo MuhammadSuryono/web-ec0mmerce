@@ -1,4 +1,4 @@
-import {BASE_URL_API, convertRupiah, statusLogin, redirectLogin} from "./module.js";
+import {BASE_URL_API, convertRupiah, statusLogin, redirectLogin, URL_APP} from "./module.js";
 import {httpRequest} from "./api.js";
 
 $(() => {
@@ -116,6 +116,29 @@ $(() => {
         let isLogin = statusLogin()
 
         if (isLogin) redirectLogin();
-        let userId = localStorage.getItem("user_id");
+        else {
+            $("#btn-checkout").html('Creating New Order ...');
+            let userId = localStorage.getItem("user_id");
+            httpRequest("cart/" + userId, "get", "", function (output) {
+                if (output.status && typeof output.status != "undefined") {
+                    let dataCart = []
+                    output.data.forEach(e => {
+                        let data = {id_item : e.product_id, quantity: e.quantity}
+                        dataCart.push(data)
+                    })
+                    let body = {user_id: userId, data: dataCart}
+                    httpRequest("order/push", "post", body, function (res) {
+                        if (res.status && typeof res.status != "undefined") {
+                            window.location.href = URL_APP() + "/checkout/" + res.data.order_id
+                        }else {
+                            toastr.error("Cannot request to create order, Please try again later!")
+                        }
+                    })
+
+                }else{
+                    toastr.error("Cannot request to create order, Please try again later!")
+                }
+            })
+        }
     })
 })

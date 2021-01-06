@@ -55,20 +55,20 @@
         </div>
         <div class="checkout__form">
             <h4>Billing Details</h4>
-            <form action="#">
+            <form id="form-penerima">
                 <div class="row">
                     <div class="col-lg-8 col-md-6">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="checkout__input">
                                     <p>Fist Name<span>*</span></p>
-                                    <input type="text" placeholder="First name" required>
+                                    <input type="text" placeholder="First name" name="firstName" required>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="checkout__input">
                                     <p>Last Name<span>*</span></p>
-                                    <input type="text" placeholder="Last Name" required>
+                                    <input type="text" placeholder="Last Name" name="lastName" required>
                                 </div>
                             </div>
                         </div>
@@ -86,26 +86,26 @@
 
                         <div class="checkout__input">
                             <!--                            <p style="margin-left: -50px">Address<span>*</span></p>-->
-                            <input type="text" placeholder="Street Address" class="checkout__input__add" required>
-                            <input type="text" placeholder="Apartment, suite, unite ect (optinal)">
+                            <input type="text" placeholder="Street Address" class="checkout__input__add" name="address" required>
+                            <input type="text" placeholder="Apartment, suite, unite ect (optinal)" name="addressOptional">
                         </div>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="checkout__input">
                                     <p>Phone<span>*</span></p>
-                                    <input type="text" placeholder="xxx" required>
+                                    <input type="text" placeholder="xxx" name="contact" required>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="checkout__input">
                                     <p>Email<span>*</span></p>
-                                    <input type="text" placeholder="a@example.com" required>
+                                    <input type="text" placeholder="a@example.com" name="email" required>
                                 </div>
                             </div>
                         </div>
                         <div class="checkout__input">
                             <p>Order notes</p>
-                            <input type="text" placeholder="Notes about your order, e.g. special notes for delivery.">
+                            <input type="text" name="orderNotes" placeholder="Notes about your order, e.g. special notes for delivery.">
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
@@ -124,27 +124,6 @@
                                     <option></option>
                                 </select>
                             </div>
-                            <!-- <div class="checkout__input__checkbox">
-                                <label for="acc-or">
-                                    JNE
-                                    <input type="checkbox" id="acc-or" value="jne">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <div class="checkout__input__checkbox">
-                                <label for="acc-or">
-                                    TIKI
-                                    <input type="checkbox" id="acc-or1" value="tiki">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <div class="checkout__input__checkbox">
-                                <label for="acc-or">
-                                    POS Indonesia
-                                    <input type="checkbox" id="acc-or3" value="pos">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div> -->
                             <button type="submit" class="site-btn">PAY</button>
                         </div>
                     </div>
