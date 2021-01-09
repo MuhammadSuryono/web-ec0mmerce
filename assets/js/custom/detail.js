@@ -3,9 +3,9 @@ import {httpRequest} from "./api.js";
 
 $(() => {
     $('.add-cart-detail').on('click', function() {
-        let isLogin = statusLogin()
-
-        if (isLogin) redirectLogin();
+        let isLogin = statusLogin();
+		
+        if (!isLogin) redirectLogin();
         else {
             let userId = localStorage.getItem("user_id");
             let idProduct = $(this).attr("product-id");
@@ -21,7 +21,7 @@ $(() => {
     $('.buy-now').on('click', function () {
         let isLogin = statusLogin()
 
-        if (isLogin) redirectLogin();
+        if (!isLogin) redirectLogin();
         else {
             let userId = localStorage.getItem("user_id");
             let idProduct = $(this).attr("product-id");
@@ -33,4 +33,27 @@ $(() => {
             })
 		}
     })
+	
+	function dataCart() {
+		let user_id = localStorage.getItem("user_id");
+        let count = 0;
+        $.ajax({
+            url: BASE_URL_API + "cart/" + user_id,
+            type:"get",
+            data: "",
+            processData:false,
+            contentType:false,
+            cache:false,
+            async:false,
+            success: function (result) {
+                console.log("result ", result);
+                count = result.data.length;
+            },
+            error: function (xhr) {
+                toastr.error("Something wrong!")
+            }
+        });
+
+        return '<i class="fa fa-shopping-cart"></i> <span>'+ count +'</span></a>';
+    }
 })
