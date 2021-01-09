@@ -144,7 +144,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Transaction ID : 09090809809</p>
+                <p id="transaction_id">Transaction ID : 09090809809</p>
                 <p>
                     <div class="row">
                         <div class="col-md-1">
@@ -157,15 +157,15 @@
                 </p>
                 <p style="padding: 30px;" class="text-center">
                     Virtual Account Number :<br>
-                    <span class="font-weight-bold text-danger" style="font-size: 16pt">78878-222-278328</span>
+                    <span class="font-weight-bold text-danger" style="font-size: 16pt" id="va_number">78878-222-278328</span>
                 </p>
                 <p>
                     <span class="text-info">Checked within 10 minutes after payment</span><br>
                     Pay the order to the virtual account number above before re-ordering
                 </p>
                 <p>
-                    <button class="site-btn">I have already paid</button>
-                    <a href="javascript:void(0)" class="primary-btn-continue">Continue Shopping</a>
+                    <button class="site-btn already-paid">I have already paid</button>
+                    <a href="javascript:void(0)" class="primary-btn-continue continue-shopping">Continue Shopping</a>
                 </p>
             </div>
         </div>

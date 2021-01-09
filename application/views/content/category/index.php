@@ -43,7 +43,7 @@
 <!-- Hero Section End -->
 
 <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg" data-setbg="https://asiasociety.org/sites/default/files/styles/1200w/public/2019-05/190523_junzibing_asiablog.jpg">
+<section class="breadcrumb-section set-bg" data-setbg="<?=$url_image.$product->category->category_image?>">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -211,7 +211,7 @@
                             <div class="product__item__pic set-bg" data-setbg="<?=$url_image.$item->image?>">
                                 <ul class="product__item__pic__hover">
                                     <?php if ($isLogin) { ?>
-                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                    <li><a href="javascript:void(0)"  class="add-cart-bullet" id="add-cart-bullet" product-id="<?=$item->id?>" product-price="<?=$item->price?>"><i class="fa fa-shopping-cart"></i></a></li>
                                     <?php } ?>
                                 </ul>
                             </div>

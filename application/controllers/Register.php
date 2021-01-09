@@ -43,13 +43,14 @@ class Register extends My_Controller
             $dataSession = [
                 'name' => $fullname,
                 'email' => $email,
-                'user_id' => $req->data->user_id,
+                'user_id' => $req->data->id_user,
                 'userIsLogin' => true,
             ];
+			
+			$body['user_id'] = $req->data->id_user;
             $this->session->set_userdata($dataSession);
 
         }
-
         echo json_encode(["status" => $statusRegister, "message" => $req->message ,"data" => $body, 'response' => $req]);
     }
 }

@@ -63,7 +63,7 @@
                 foreach ($category as $categor)
                 { ?>
                 <div class="col-lg-3">
-                    <div class="categories__item set-bg" data-setbg="/assets/img/categories/cat-1.jpg">
+                    <div class="categories__item set-bg" data-setbg="<?=$url_image.$categor->category_image?>">
                         <h5><a href="<?=base_url('category/'.$categor->id)?>"><?=$categor->category_name?></a></h5>
                     </div>
                 </div>

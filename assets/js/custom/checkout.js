@@ -1,4 +1,4 @@
-import {BASE_URL_API, convertRupiah} from "./module.js";
+import {BASE_URL_API, convertRupiah, URL_APP} from "./module.js";
 import {httpRequest} from "./api.js";
 
 $(() => {
@@ -7,18 +7,23 @@ $(() => {
     let textCourier = '';
     let costShip = 0;
     let destination_id = 0;
+	let weight = 0;
     $('.cost-deliver').html('<li> Delivery service <span>+Rp. '+ costShip +'</span></li>');
 
     dataCart();
 
     let getDataCourier = (destination) => {
+		let weightNew = weight / 1000;
+		if (weightNew < 1) {
+			weightNew = 1;
+		}
         return $.ajax({
             url: BASE_URL_API + 'ongkir/cost',
             method: 'POST',
             data: {
                 origin: 114,
                 destination: destination,
-                weight: 2,
+                weight: weightNew,
                 courier: "jne"
             },
             cache: false,
@@ -73,15 +78,16 @@ $(() => {
 
     function dataCart() {
         httpRequest("cart/checkout/" + user_id, "get", "", function (result) {
-            console.log(result)
+			console.log(result);
             let dataCart = result.data
             let listProduct = '';
 
             dataCart.forEach(product => {
+				weight = weight + parseInt(product.weight);
                 subTotal = subTotal + (product.quantity * product.item_price);
                 listProduct += '<li>'+ product.item_name +' (x'+ product.quantity +') <span>Rp. '+ convertRupiah(product.quantity * product.item_price) +'</span></li>';
             })
-
+			
             $('.checkout__order__subtotal').html('Subtotal <span>Rp. '+ convertRupiah(subTotal) +'</span>');
             $('.checkout__order__total').html('Total <span>Rp. '+ convertRupiah(subTotal + costShip) +'</span>')
             $('.list-orders').html(listProduct);
@@ -114,11 +120,20 @@ $(() => {
         httpRequest("transactions/push", "post", body, function (output) {
             if (output.status && typeof output.status != "undefined")
             {
-                console.log(output)
+                $('#transaction_id').html('Transaction ID : ' + output.data.transaction_id);
+				$('#va_number').html(output.data.va_number);
                 $("#exampleModal").modal('show');
             }else{
                 toastr.error("Cannot create transaction, Please try again later!");
             }
         })
     })
+	
+	$('.continue-shopping').on('click', function() {
+		window.location.href = URL_APP();
+	})
+	
+	$('.already-paid').on('click', function() {
+		window.location.href = URL_APP();
+	})
 })
