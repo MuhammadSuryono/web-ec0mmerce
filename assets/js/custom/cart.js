@@ -84,7 +84,7 @@ $(() => {
     $('.add-cart-bullet').on('click', function() {
         let isLogin = statusLogin()
 
-        if (isLogin) redirectLogin();
+        if (!isLogin) redirectLogin();
         else {
             let userId = localStorage.getItem("user_id");
             let idProduct = $(this).attr("product-id");
@@ -100,7 +100,7 @@ $(() => {
     $('#remove-cart').on('click', function () {
         let isLogin = statusLogin()
 
-        if (isLogin) redirectLogin();
+        if (!isLogin) redirectLogin();
         else {
             let cartId = $(this).attr("cart-id");
             httpRequest("cart/" + cartId, "delete", {}, function (outpout) {
@@ -115,7 +115,7 @@ $(() => {
     $('#btn-checkout').on('click', function name(params) {
         let isLogin = statusLogin()
 
-        if (isLogin) redirectLogin();
+        if (!isLogin) redirectLogin();
         else {
             $("#btn-checkout").html('Creating New Order ...');
             let userId = localStorage.getItem("user_id");

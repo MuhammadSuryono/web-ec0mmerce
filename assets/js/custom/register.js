@@ -19,7 +19,7 @@ $(document).ready(function () {
                 if (obj.status) {
                     toastr.success(obj.message);
                     localStorage.setItem("userIsLogin", true);
-                    localStorage.setItem("user_id", obj.data.id);
+                    localStorage.setItem("user_id", obj.data.user_id);
                     localStorage.setItem("fullname", obj.data.fullname);
                     localStorage.setItem("email", obj.data.email);
                     document.getElementById("form-register").reset();

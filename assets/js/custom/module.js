@@ -20,9 +20,8 @@ function statusLogin() {
     let isLogin = localStorage.getItem("userIsLogin");
     let status = false;
 
-    if (isLogin == true) status = true;
+    if (isLogin) status = true;
     if (typeof isLogin == "undefined") status = false;
-
     return status;
 }
 
