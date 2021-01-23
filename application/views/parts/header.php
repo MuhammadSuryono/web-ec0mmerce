@@ -4,7 +4,7 @@
             <div class="col-lg-6 col-md-6">
                 <div class="header__top__left">
                     <ul>
-                        <li><i class="fa fa-envelope"></i> help@gmail.com</li>
+                        <li><i class="fa fa-envelope"></i> bersatuindahgemilang@gmail.com</li>
                         <li>Other information or tagline</li>
                     </ul>
                 </div>

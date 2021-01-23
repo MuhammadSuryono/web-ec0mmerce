@@ -25,7 +25,7 @@
 
 </head>
 
-<body>
+<body style="background-color:lightblue">
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>

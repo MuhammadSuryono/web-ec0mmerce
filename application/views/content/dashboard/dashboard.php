@@ -26,7 +26,7 @@
                                 All Categories
                                 <span class="arrow_carrot-down"></span>
                             </div>
-                            <input type="text" placeholder="What do yo u need?">
+                            <input type="text" placeholder="What do you need?">
                             <button type="submit" class="site-btn">SEARCH</button>
                         </form>
                     </div>
@@ -35,17 +35,17 @@
                             <i class="fa fa-phone"></i>
                         </div>
                         <div class="hero__search__phone__text">
-                            <h5>0361 888.888</h5>
-                            <span>support 24/7 time</span>
+                            <h5>081 917 027 766</h5>
+                            <span>Monday-Friday: 09.00-18.00</span>
                         </div>
                     </div>
                 </div>
-                <div class="hero__item set-bg" data-setbg="/assets/img/hero/banner.jpg">
+                <div class="hero__item set-bg" data-setbg="/assets/img/hero/Home.jpg">
                     <div class="hero__text">
-                        <span>FRUIT FRESH</span>
-                        <h2>Vegetable <br />100% Organic</h2>
-                        <p>Free Pickup and Delivery Available</p>
-                        <a href="#" class="primary-btn">SHOP NOW</a>
+                        <span>HOME AND PERSONAL CARE</span>
+                        <h2 style="color:red">WE FULFIL <br />YOUR NEED</h2>
+                        <p style="color:red">Free Pickup and Delivery Available</p>
+                        
                     </div>
                 </div>
             </div>

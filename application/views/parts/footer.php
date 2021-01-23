@@ -8,9 +8,9 @@
                     </div>
                     <ul>
                         <li><strong>CV. BERSATU INDAH GEMILANG</strong></li>
-                        <li>Address: Jl. Cargo Indah 1 No. 6 Denpasar</li>
-                        <li>Phone: +62361 8888.888</li>
-                        <li>Email: helper@email.com</li>
+                        <li>Address: Jl. Cargo Indah 1 No. 6 Ubung Denpasar</li>
+                        <li>Phone: 081 917 027 766</li>
+                        <li>Email: bersatuindahgemilang@gmail.com</li>
                     </ul>
                 </div>
             </div>

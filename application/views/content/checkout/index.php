@@ -26,7 +26,7 @@
                 <div class="hero__search">
                     <div class="hero__search__form">
                         <form action="#">
-                            <input type="text" placeholder="What do yo u need?">
+                            <input type="text" placeholder="What do you need?">
                             <button type="submit" class="site-btn">SEARCH</button>
                         </form>
                     </div>
@@ -35,8 +35,8 @@
                             <i class="fa fa-phone"></i>
                         </div>
                         <div class="hero__search__phone__text">
-                            <h5>+65 11.188.888</h5>
-                            <span>support 24/7 time</span>
+                            <h5>081 917 027 766</h5>
+                            <span>Monday-Friday: 09.00-18.00</span>
                         </div>
                     </div>
                 </div>
