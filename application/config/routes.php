@@ -67,5 +67,6 @@ $route['auth/logout'] = 'logout/authLogout';
 $route['auth/validate-otp'] = 'register/validateOtp';
 
 $route['user/purchase'] = 'purchase/purchaseByUser';
+$route['user/purchase/(:any)'] = 'purchase/purchaseByOrderId/$1';
 
 

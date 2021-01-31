@@ -228,7 +228,7 @@
                 <div class="col-lg-12">
                     <div class="card mb-3">
                         <div class="card-header">
-                            <span class="font-weight-bold">ORDER ID: #<?=$order->order_id?> <span class="badge badge-<?=$badge?>"><?=$order->order_status?></span>  <br><small><?=$order->created_at?></small></span>
+                            <span class="font-weight-bold"><a href="<?=base_url().'/user/purchase/'.$order->order_id?>">ORDER ID: #<?=$order->order_id?></a> <span class="badge badge-<?=$badge?>"><?=$order->order_status?></span>  <br><small><?=$order->created_at?></small></span>
                             <?php if ($order->order_status == "create_on_transaction") {?>
                             <a href="<?=base_url().'checkout/'.$order->order_id?>" type="button" class="site-btn already-paid" aria-label="Close" style="float: right; color: #ffffff">
                                 Checkout
@@ -260,14 +260,26 @@
                             </div>
 
                             <?php } ?>
+                            <hr>
                             <div class="row">
                                 <div class="col-md-12 text-right">
-                                    <small>Total Purchase: </small><h5 class="card-title" style="color: red"> Rp. <?=number_format($order->total_price)?></h5>
+                                    <small>Cost ship: </small><h5 class="card-title"> Rp.
+                                        <?php
+                                        $total_purchase = $order->total_price;
+                                        if ($order->transactions != null) {
+                                            $total_purchase = $total_purchase + $order->transactions->cost;
+                                            echo number_format($order->transactions->cost);
+                                        }else echo 0;
+                                        ?>
+                                    </h5>
+                                </div>
+                                <div class="col-md-12 text-right">
+                                    <small>Total Purchase: </small><h5 class="card-title" style="color: red"> Rp. <?=number_format($total_purchase)?></h5>
                                 </div>
                             </div>
                         </div>
                         <?php
-                        if ($order->order_status == "create_on_transaction" || $order->order_status == "cancel_order") {}else{?>
+                        if ($order->order_status == "cancel_order" || $order->order_status == "create_on_transaction") {}else{?>
                         <div class="card-footer">
                             <div style="display:inline-block;width:100%;overflow-y:auto;">
                                 <ul class="timeline timeline-horizontal">

@@ -24,4 +24,18 @@ class Purchase extends My_Controller
 
         $this->load->view('index', $this->parseData);
     }
+
+    public function purchaseByOrderId($orderId)
+    {
+        $data = $this->request_API_GET([], $this->BaseUrl('development').'category', []);
+        $orders = $this->request_API_GET(null, $this->BaseUrl('development').'order/order-id/'.$orderId, null);
+
+        $this->parseData['title_tab'] = 'Purchase '.$orderId;
+        $this->parseData['content'] = 'content/purchase/detail';
+        $this->parseData['javascript'] = $this->js;
+        $this->parseData['category'] = $data->data;
+        $this->parseData['orders'] = $orders->data;
+
+        $this->load->view('index', $this->parseData);
+    }
 }
