@@ -71,7 +71,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="javascript:void(0)" product-id="<?=$product->id?>" product-price="<?=$product->price?>" id="add-cart-detail" class="primary-btn-add-card add-cart-detail"><i class="fa fa-shopping-cart"></i> ADD TO CARD</a>
+                    <a href="javascript:void(0)" product-id="<?=$product->id?>" product-price="<?=$product->price?>" id="add-cart-detail" class="primary-btn-add-card add-cart-detail"><i class="fa fa-shopping-cart"></i> ADD TO CART</a>
                     <a href="javascript:void(0)" product-id="<?=$product->id?>" product-price="<?=$product->price?>" id="buy-now" class="primary-btn buy-now"><i class="fa fa-money"></i> BUY NOW</a>
                     <ul>
                         <li><b>Availability</b>

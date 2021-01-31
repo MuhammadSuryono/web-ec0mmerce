@@ -29,6 +29,7 @@ function statusLogin() {
  *
  */
 function redirectLogin() {
+    // $('#modalLogin').modal('show');
     window.location.href = URL_APP() + "/auth/login";
 }
 
@@ -52,5 +53,8 @@ function convertRupiah(angka) {
     return rupiah
 }
 
+/***
+ *
+ */
 export {URL_APP, BASE_URL_API, statusLogin, redirectLogin, convertRupiah}
 

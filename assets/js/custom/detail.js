@@ -5,8 +5,7 @@ $(() => {
     $('.add-cart-detail').on('click', function() {
         let isLogin = statusLogin();
 		
-        if (!isLogin) redirectLogin();
-        else {
+        if (isLogin) {
             let userId = localStorage.getItem("user_id");
             let idProduct = $(this).attr("product-id");
             let pricceProduct = $(this).attr("product-price");
@@ -16,13 +15,13 @@ $(() => {
                 if (outpout.status && typeof outpout.status != "undefined") toastr.success(outpout.message); $('#count-cart').html(dataCart());
             })
         }
+
     })
 
     $('.buy-now').on('click', function () {
         let isLogin = statusLogin()
 
-        if (!isLogin) redirectLogin();
-        else {
+        if (isLogin) {
             let userId = localStorage.getItem("user_id");
             let idProduct = $(this).attr("product-id");
             let pricceProduct = $(this).attr("product-price");
@@ -31,7 +30,7 @@ $(() => {
             httpRequest("cart", "post", body, function (outpout) {
                 if (outpout.status && typeof outpout.status != "undefined") window.location.href = URL_APP() + "/cart";
             })
-		}
+        }
     })
 	
 	function dataCart() {

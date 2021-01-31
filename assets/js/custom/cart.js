@@ -141,4 +141,6 @@ $(() => {
             })
         }
     })
+
+    $('#count-notification').html('<li class="fa fa-shopping-bag" style="color: black"><span>0</span></li>');
 })

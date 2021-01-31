@@ -64,4 +64,8 @@ $route['auth/login/check'] = 'login/authLogin';
 $route['auth/register'] = 'register';
 $route['auth/register/create'] = 'register/authRegister';
 $route['auth/logout'] = 'logout/authLogout';
+$route['auth/validate-otp'] = 'register/validateOtp';
+
+$route['user/purchase'] = 'purchase/purchaseByUser';
+
 

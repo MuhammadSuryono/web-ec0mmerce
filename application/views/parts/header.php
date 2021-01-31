@@ -33,6 +33,7 @@
                 <?php if ($isLogin) { ?>
                 <ul>
                     <li><a href="<?=base_url('cart')?>" id="count-cart"></li>
+                    <li><a href="<?=base_url('user/purchase')?>" id="count-notification"></li>
                 </ul>
                 <?php } ?>
                 <div class="header__top__right__auth">
@@ -41,7 +42,7 @@
                     if ($isLogin) $url = base_url().'auth/logout';
                     ?>
 
-                    <a href="<?=$url?>"><i class="fa fa-user"></i> <?= $isLogin ? $this->session->userdata('name').' | Logout':'Login'?></a>
+                    <a href="javascript:void(0)" id="buttonLogin"><i class="fa fa-user"></i> <?= $isLogin ? $this->session->userdata('name').' | Logout':'Login'?></a>
                 </div>
             </div>
         </div>

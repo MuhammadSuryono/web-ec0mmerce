@@ -1,4 +1,4 @@
-import {BASE_URL_API, convertRupiah, URL_APP} from "./module.js";
+import {BASE_URL_API, convertRupiah, URL_APP, statusLogin} from "./module.js";
 import {httpRequest} from "./api.js";
 
 $(() => {
@@ -77,15 +77,19 @@ $(() => {
     })
 
     function dataCart() {
-        httpRequest("cart/checkout/" + user_id, "get", "", function (result) {
+
+        if (!statusLogin()) window.location.href = "/"
+
+        let orderId = window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
+        httpRequest("order/order-id/" + orderId, "get", "", function (result) {
 			console.log(result);
-            let dataCart = result.data
+            let dataCart = result.data.product
             let listProduct = '';
 
             dataCart.forEach(product => {
 				weight = weight + parseInt(product.weight);
-                subTotal = subTotal + (product.quantity * product.item_price);
-                listProduct += '<li>'+ product.item_name +' (x'+ product.quantity +') <span>Rp. '+ convertRupiah(product.quantity * product.item_price) +'</span></li>';
+                subTotal = subTotal + (product.qty * product.price);
+                listProduct += '<li>'+ product.item_name +' (x'+ product.qty +') <span>Rp. '+ convertRupiah(product.qty * product.price) +'</span></li>';
             })
 			
             $('.checkout__order__subtotal').html('Subtotal <span>Rp. '+ convertRupiah(subTotal) +'</span>');

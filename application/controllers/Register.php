@@ -40,17 +40,37 @@ class Register extends My_Controller
         if ($req->status)
         {
             $statusRegister = true;
+
+        }
+        echo json_encode(["status" => $statusRegister, "message" => $req->message ,"data" => $req->data, 'response' => $req]);
+    }
+
+    public function validateOtp()
+    {
+        $code_otp = $this->input->post('code_otp');
+        $id_user = $this->input->post('id_user');
+
+        $body = [
+            'code_otp' => $code_otp,
+            'id_user' => $id_user,
+        ];
+
+        $req = $this->request_API_POST($body, $this->BaseUrl('development').'otp/validate');
+        $statusRegister = false;
+
+        if ($req->status)
+        {
+            $statusRegister = true;
             $dataSession = [
-                'name' => $fullname,
-                'email' => $email,
-                'user_id' => $req->data->id_user,
+                'name' => $req->data->fullname,
+                'email' => $req->data->email,
+                'user_id' => $req->data->id,
                 'userIsLogin' => true,
             ];
-			
-			$body['user_id'] = $req->data->id_user;
+
             $this->session->set_userdata($dataSession);
 
         }
-        echo json_encode(["status" => $statusRegister, "message" => $req->message ,"data" => $body, 'response' => $req]);
+        echo json_encode(["status" => $statusRegister, "message" => $req->message ,"data" => $req->data, 'response' => $req]);
     }
 }
