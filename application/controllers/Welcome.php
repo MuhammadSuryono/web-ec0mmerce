@@ -34,7 +34,6 @@ class Welcome extends My_Controller {
 		$this->parseData['products'] = $product->data;
         $this->parseData['javascript'] = $this->js;
 
-//		print_r($this->parseData);
 		$this->load->view('index', $this->parseData);
 	}
 }

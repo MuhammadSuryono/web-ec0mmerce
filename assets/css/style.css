@@ -731,7 +731,7 @@ ol {
 	text-align: center;
 	border-radius: 50%;
 	float: left;
-	margin-right: 20px;
+	margin-right: 10px;
 }
 
 .hero__search__phone__text {
@@ -3524,5 +3524,9 @@ ol {
 	.header__logo {
 		padding: 15px 0;
 		width: 50%;
+	}
+
+	.image-product:hover {
+		cursor: pointer;
 	}
 }

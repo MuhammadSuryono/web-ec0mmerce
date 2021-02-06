@@ -223,6 +223,13 @@
             tags: "true",
             placeholder: "Select City"
         });
+
+        $(".image-product").on('click', function () {
+            let id = $(this).attr("data-id")
+            let productName = $(this).attr("data-product")
+            let baseUrl = '<?=base_url().'product/'?>'
+            window.location.href = baseUrl + productName + '/' + id
+        })
     });
 </script>
 <script src=<?= base_url("assets/js/main.js") ?>></script>
