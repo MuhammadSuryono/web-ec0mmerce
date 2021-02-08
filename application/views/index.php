@@ -144,7 +144,7 @@
                 <form id="form-otp">
                     <div class="form-group">
                         <label>YOUR CODE</label>
-                        <input class="form-control" name="id_user" id="id_user" placeholder="xxxx" required/>
+                        <input class="form-control" name="id_user" id="id_user" placeholder="xxxx" hidden required/>
                         <input class="form-control" name="code_otp" placeholder="xxxx" required/>
                     </div>
 
