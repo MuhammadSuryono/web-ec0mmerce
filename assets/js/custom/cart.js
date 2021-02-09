@@ -61,14 +61,11 @@ $(() => {
             async:false,
             success: function (result) {
                 if (result.status) {
-                    let totalQty = parseInt(result.data.grand_total.totalQuantity);
-                    let totalPrice = parseInt(result.data.grand_total.totalPrice);
+                    let totalPrice = parseInt(result.data.grand_total);
 
-                    let total = totalQty*totalPrice;
-
-                    $('.shoping__cart__total').html('Rp. ' + convertRupiah(result.data.total));
-                    let html = '<li class=".subtotal">Subtotal <span>Rp. '+ convertRupiah(total) +'</span></li>\n' +
-                        '<li>Total <span>Rp. '+ convertRupiah(total) +'</li>';
+                    $('.shoping__cart__total_' + id).html('Rp. ' + convertRupiah(result.data.total));
+                    let html = '<li class=".subtotal">Subtotal <span>Rp. '+ convertRupiah(totalPrice) +'</span></li>\n' +
+                        '<li>Total <span>Rp. '+ convertRupiah(totalPrice) +'</li>';
                     $('.grand_total').html(html);
 
                     $button.parent().find('input').val(newVal);
