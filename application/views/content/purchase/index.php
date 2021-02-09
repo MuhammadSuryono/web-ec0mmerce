@@ -223,12 +223,15 @@
                 if ($order->order_status == "cancel_order") $badge = "danger";
                 elseif ($order->order_status == "waiting_payment" || $order->order_status == "create_on_transaction") $badge = "warning";
 
+                if ($order->transactions != null) {
+                    $order->order_status = $order->transactions->transaction_status;
+                }
             ?>
 
                 <div class="col-lg-12">
                     <div class="card mb-3">
                         <div class="card-header">
-                            <span class="font-weight-bold"><a href="<?=base_url().'/user/purchase/'.$order->order_id?>">ORDER ID: #<?=$order->order_id?></a> <span class="badge badge-<?=$badge?>"><?=$order->order_status?></span>  <br><small><?=$order->created_at?></small></span>
+                            <span class="font-weight-bold"><a href="<?=base_url().'/user/purchase/'.$order->order_id?>">ORDER ID: #<?=$order->order_id?></a> <span class="badge badge-<?=$badge?>"><?=strtoupper($order->order_status)?></span>  <br><small><?=$order->created_at?></small></span>
                             <?php if ($order->order_status == "create_on_transaction") {?>
                             <a href="<?=base_url().'checkout/'.$order->order_id?>" type="button" class="site-btn already-paid" aria-label="Close" style="float: right; color: #ffffff">
                                 Checkout

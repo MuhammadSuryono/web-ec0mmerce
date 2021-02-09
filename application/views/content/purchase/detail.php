@@ -300,7 +300,7 @@
                                     <label>Transaction Status : </label>
                                 </div>
                                 <div class="col-md-9">
-                                    <label><?=$orders->transactions->transaction_status?></label>
+                                    <label><?=strtoupper($orders->transactions->transaction_status)?></label>
                                 </div>
                             </div>
                             <div class="row">
