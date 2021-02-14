@@ -38,4 +38,9 @@ class Purchase extends My_Controller
 
         $this->load->view('index', $this->parseData);
     }
+
+    public function updateStatus($orderId)
+    {
+        
+    }
 }

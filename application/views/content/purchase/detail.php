@@ -222,7 +222,12 @@
                     <div class="card mb-3">
                         <div class="card-header">
                             <span class="font-weight-bold">ORDER ID: #<?=$orders->order->order_id?> <br><small><?=$orders->order->created_at?></small></span>
-                            <?php if ($orders->order->order_status == "create_on_transaction") {?>
+                            <?php if (strtoupper($orders->transactions->status_pengiriman) == "SENT") {?>
+                                <a href="javascript:void(0)" class="site-btn already-paid btn-success"
+                                   data-id="<?= $orders->order->order_id ?>" id="btn-received-order" style="float: right">
+                                    Received</a>
+
+                            <?php } if ($orders->order->order_status == "create_on_transaction") {?>
                                 <a href="<?=base_url().'checkout/'.$orders->order->order_id?>" type="button" class="site-btn already-paid" aria-label="Close" style="float: right; color: #ffffff">
                                     Checkout
                                 </a>
@@ -234,7 +239,7 @@
                             }elseif ($orders->order->order_status != "cancel_order") {
                                 ?>
                                 <a href="javascript:void(0)" class="primary-btn-continue continue-shopping mr-2"
-                                   data-id="<?= $orders->order->order_id ?>" id="btn-cancel-order" style="float: right">
+                                   data-id="<?= $orders->transactions->order_id ?>" id="btn-cancel-order" style="float: right">
                                     Cancel Order</a>
 
                             <?php } ?>
@@ -306,6 +311,12 @@
                                 </div>
                                 <div class="col-md-9">
                                     <label><?=strtoupper($orders->transactions->status_pengiriman)?></label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>Shipper Number : </label>
+                                </div>
+                                <div class="col-md-9">
+                                    <label><?=strtoupper($orders->transactions->number_resi)?></label>
                                 </div>
                             </div>
                             <div class="row">
