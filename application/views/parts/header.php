@@ -12,9 +12,6 @@
             <div class="col-lg-6 col-md-6">
                 <div class="header__top__right">
                     <div class="header__top__right__social">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-whatsapp"></i></a>
-                        <a href="#"><i class="fa fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
