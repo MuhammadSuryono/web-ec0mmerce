@@ -318,6 +318,12 @@
                                 <div class="col-md-9">
                                     <label><?=strtoupper($orders->transactions->number_resi)?></label>
                                 </div>
+                                <div class="col-md-3">
+                                    <label>Delivery service : </label>
+                                </div>
+                                <div class="col-md-9">
+                                    <label><?=strtoupper($orders->transactions->destination)?></label>
+                                </div>
                             </div>
                             <div class="row">
 
