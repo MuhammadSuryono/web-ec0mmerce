@@ -227,10 +227,15 @@
                                     Checkout
                                 </a>
                             <?php }
-                            if ($orders->order->order_status != "cancel_order") {
+                            if ($orders->transactions != null) {
+                                if (strtoupper($orders->transactions->transaction_status) == "SETTLEMENT" && strtoupper($orders->transactions->status_pengiriman) == "PACKED"
+                                    || strtoupper($orders->transactions->status_pengiriman) == "SENT" || strtoupper($orders->transactions->status_pengiriman) == "RECEIVED")  {
+                                }
+                            }elseif ($orders->order->order_status != "cancel_order") {
                                 ?>
-
-                                <a href="javascript:void(0)" class="primary-btn-continue continue-shopping mr-2" data-id="<?=$orders->order->order_id?>" id="btn-cancel-order" style="float: right">Cancel Order</a>
+                                <a href="javascript:void(0)" class="primary-btn-continue continue-shopping mr-2"
+                                   data-id="<?= $orders->order->order_id ?>" id="btn-cancel-order" style="float: right">
+                                    Cancel Order</a>
 
                             <?php } ?>
                         </div>
@@ -296,6 +301,12 @@
                                 <div class="col-md-9">
                                     <label><?=strtoupper($orders->transactions->transaction_status)?></label>
                                 </div>
+                                <div class="col-md-3">
+                                    <label>Shipper Status : </label>
+                                </div>
+                                <div class="col-md-9">
+                                    <label><?=strtoupper($orders->transactions->status_pengiriman)?></label>
+                                </div>
                             </div>
                             <div class="row">
 
@@ -359,8 +370,51 @@
                             <div class="card-footer">
                                 <div style="display:inline-block;width:100%;overflow-y:auto;">
                                     <ul class="timeline timeline-horizontal">
+                                        <?php
+
+                                        $alreadyPayIcon = '<i class="glyphicon fa fa-money"></i>';
+                                        $packedIcon = '<i class="glyphicon fa fa-boxes"></i>';
+                                        $sentIcon = '<i class="glyphicon fa fa-truck"></i>';
+                                        $receivedIcon = '<i class="glyphicon fa fa-handshake"></i>';
+
+                                        $alreadyStatus = 'no-active';
+                                        $packed = 'no-active';
+                                        $sent = 'no-active';
+                                        $received = 'no-active';
+
+                                        if ($orders->transactions != null) {
+                                            if (strtoupper($orders->transactions->transaction_status) == "SETTLEMENT") {
+                                                $alreadyPayIcon = '<i class="glyphicon fa fa-check"></i>';
+                                                $alreadyStatus = 'danger';
+                                            }
+
+                                            if ($orders->transactions->status_pengiriman == "packed") {
+                                                $packedIcon = '<i class="glyphicon fa fa-check"></i>';
+                                                $packed = 'danger';
+                                            }
+
+                                            if ($orders->transactions->status_pengiriman == "sent") {
+                                                $packedIcon = '<i class="glyphicon fa fa-check"></i>';
+                                                $sentIcon = '<i class="glyphicon fa fa-check"></i>';
+
+                                                $sent = 'danger';
+                                                $packed = 'danger';
+                                            }
+
+                                            if ($orders->transactions->status_pengiriman == "received") {
+                                                $packedIcon = '<i class="glyphicon fa fa-check"></i>';
+                                                $sentIcon = '<i class="glyphicon fa fa-check"></i>';
+                                                $receivedIcon = '<i class="glyphicon fa fa-check"></i>';
+
+
+                                                $sent = 'danger';
+                                                $packed = 'danger';
+                                                $received = 'danger';
+                                            }
+                                        }
+                                        ?>
                                         <li class="timeline-item">
-                                            <div class="timeline-badge danger"><i class="glyphicon fa fa-check"></i></div>
+                                            <div class="timeline-badge <?=$alreadyStatus?>"><?= $alreadyPayIcon ?></div>
                                             <div class="timeline-panel text-center">
                                                 <div class="timeline-heading">
                                                     <h6 class="timeline-title">Already Pay</h6>
@@ -368,7 +422,7 @@
                                             </div>
                                         </li>
                                         <li class="timeline-item">
-                                            <div class="timeline-badge no-active"><i class="glyphicon fa fa-boxes"></i></div>
+                                            <div class="timeline-badge <?=$packed?>"><?= $packedIcon ?></div>
                                             <div class="timeline-panel text-center">
                                                 <div class="timeline-heading">
                                                     <h6 class="timeline-title">Packed</h6>
@@ -376,7 +430,7 @@
                                             </div>
                                         </li>
                                         <li class="timeline-item">
-                                            <div class="timeline-badge no-active"><i class="glyphicon fa fa-truck"></i></div>
+                                            <div class="timeline-badge <?=$sent?>"><?= $sentIcon ?></div>
                                             <div class="timeline-panel text-center">
                                                 <div class="timeline-heading">
                                                     <h6 class="timeline-title">Sent</h6>
@@ -384,18 +438,10 @@
                                             </div>
                                         </li>
                                         <li class="timeline-item">
-                                            <div class="timeline-badge no-active"><i class="glyphicon fa fa-handshake"></i></div>
+                                            <div class="timeline-badge <?=$received?>"><?= $receivedIcon ?></div>
                                             <div class="timeline-panel text-center">
                                                 <div class="timeline-heading">
                                                     <h6 class="timeline-title">Received</h6>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="timeline-item">
-                                            <div class="timeline-badge no-active"><i class="glyphicon fa fa-times"></i></div>
-                                            <div class="timeline-panel text-center">
-                                                <div class="timeline-heading">
-                                                    <h6 class="timeline-title">Canceled</h6>
                                                 </div>
                                             </div>
                                         </li>
