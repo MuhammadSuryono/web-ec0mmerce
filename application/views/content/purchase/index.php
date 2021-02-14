@@ -254,6 +254,7 @@
                             <span class="font-weight-bold"><a
                                         href="<?= base_url() . '/user/purchase/' . $order->order_id ?>">ORDER ID: #<?= $order->order_id ?></a> <span
                                         class="badge badge-<?= $badge ?>"><?= strtoupper($order->order_status) ?></span>  <br><small><?= $order->created_at ?></small></span>
+
                             <?php if ($order->order_status == "create_on_transaction") { ?>
                                 <a href="<?= base_url() . 'checkout/' . $order->order_id ?>" type="button"
                                    class="site-btn already-paid" aria-label="Close"
@@ -263,9 +264,13 @@
                             <?php }
                             if ($order->transactions != null) {
                                 if (strtoupper($order->transactions->transaction_status) == "SETTLEMENT" && strtoupper($order->transactions->status_pengiriman) == "PACKED"
-                                || strtoupper($order->transactions->status_pengiriman) == "SENT" || strtoupper($order->transactions->status_pengiriman) == "RECEIVED")  {
-                                }
-                            }elseif ($order->order_status != "cancel_order") {
+                                    || strtoupper($order->transactions->status_pengiriman) == "RECEIVED") {
+                                } elseif (strtoupper($order->transactions->status_pengiriman) == "SENT") {?>
+                                    <a href="javascript:void(0)" class="site-btn already-paid btn-success"
+                                       data-id="<?= $order->order_id ?>" id="btn-received-order" style="float: right">
+                                        Received</a>
+                                <?php }
+                            } elseif ($order->order_status != "cancel_order") {
                                 ?>
                                 <a href="javascript:void(0)" class="primary-btn-continue continue-shopping mr-2"
                                    data-id="<?= $order->order_id ?>" id="btn-cancel-order" style="float: right">
@@ -363,7 +368,7 @@
                                         }
                                         ?>
                                         <li class="timeline-item">
-                                            <div class="timeline-badge <?=$alreadyStatus?>"><?= $alreadyPayIcon ?></div>
+                                            <div class="timeline-badge <?= $alreadyStatus ?>"><?= $alreadyPayIcon ?></div>
                                             <div class="timeline-panel text-center">
                                                 <div class="timeline-heading">
                                                     <h6 class="timeline-title">Already Pay</h6>
@@ -371,7 +376,7 @@
                                             </div>
                                         </li>
                                         <li class="timeline-item">
-                                            <div class="timeline-badge <?=$packed?>"><?= $packedIcon ?></div>
+                                            <div class="timeline-badge <?= $packed ?>"><?= $packedIcon ?></div>
                                             <div class="timeline-panel text-center">
                                                 <div class="timeline-heading">
                                                     <h6 class="timeline-title">Packed</h6>
@@ -379,7 +384,7 @@
                                             </div>
                                         </li>
                                         <li class="timeline-item">
-                                            <div class="timeline-badge <?=$sent?>"><?= $sentIcon ?></div>
+                                            <div class="timeline-badge <?= $sent ?>"><?= $sentIcon ?></div>
                                             <div class="timeline-panel text-center">
                                                 <div class="timeline-heading">
                                                     <h6 class="timeline-title">Sent</h6>
@@ -387,7 +392,7 @@
                                             </div>
                                         </li>
                                         <li class="timeline-item">
-                                            <div class="timeline-badge <?=$received?>"><?= $receivedIcon ?></div>
+                                            <div class="timeline-badge <?= $received ?>"><?= $receivedIcon ?></div>
                                             <div class="timeline-panel text-center">
                                                 <div class="timeline-heading">
                                                     <h6 class="timeline-title">Received</h6>
